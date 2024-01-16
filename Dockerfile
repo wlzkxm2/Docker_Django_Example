@@ -3,7 +3,7 @@ FROM python:3.10
 
 RUN mkdir /root/.ssh/
 
-ADD ~/.ssh/id_rsa /root/.ssh/id_rsa
+ADD ./id_rsa /root/.ssh/id_rsa
 
 RUN chmod 600 /root/.ssh/id_rsa
 
