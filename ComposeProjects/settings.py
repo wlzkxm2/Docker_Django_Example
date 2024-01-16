@@ -20,8 +20,8 @@ DATABASES = {
         'ENGINE' : 'django.db.backends.mysql',
         'NAME': 'compose_pro',
         'USER': 'root',
-        'PASSWORD':'9837',
-        'HOST': 'localhost',
+        'PASSWORD':'root',
+        'HOST': 'mariadb',
         'PORT': '3306',
     }
 }
