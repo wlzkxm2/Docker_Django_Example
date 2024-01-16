@@ -1,6 +1,16 @@
 # 생성할 이미지의 베이스가 될 이미지
 FROM python:3.10
 
+RUN mkdir /root/.ssh/
+
+ADD ~/.ssh/id_rsa /root/.ssh/id_rsa
+
+RUN chmod 600 /root/.ssh/id_rsa
+
+RUN touch /root/.ssh/known_hosts
+
+RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
+
 # 명령어를 실행할 디렉토리
 WORKDIR /home/ubuntu/
 
@@ -8,6 +18,9 @@ RUN apt-get update -y
 
 # git repo clone
 RUN git clone git@github.com:wlzkxm2/Docker_Django_Example.git
+RUN rm /root/.ssh/id_rsa
+
+WORKDIR /home/ubuntu/Docker_Django_Example/
 
 # 라이브러리 설치
 RUN pip install -r requirements.txt
