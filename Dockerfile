@@ -28,9 +28,7 @@ RUN pip install -r requirements.txt
 # gunicorn 설치
 RUN pip install gunicorn
 
-RUN python3 manage.py collectstatic
-RUN python3 manage.py makemigrations
-RUN python3 manage.py migrate
+RUN python3 manage.py collectstatic --noinput
 
 # 해당 이미지로 컨테이너를 실행할때 어떤 명령어를 통해 수행할것인지
 # 하나의 Dockerfile에서 한번만 수행가능
