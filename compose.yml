@@ -52,7 +52,7 @@ services:
     depends_on: 
       - mariadb
     volumes:
-      - /home/ubuntu/Docker_Django_Example/:/home/django/
+      - /home/ubuntu/Docker_Django_Example/:/home/ubuntu/Docker_Django_Example/
     networks:
       - default
 
