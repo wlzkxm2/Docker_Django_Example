@@ -29,7 +29,7 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 RUN python manage.py makemigrations
-RUN python manage.py migrate
+# RUN python manage.py migrate
 
 # 해당 이미지로 컨테이너를 실행할때 어떤 명령어를 통해 수행할것인지
 # 하나의 Dockerfile에서 한번만 수행가능
