@@ -1,0 +1,61 @@
+# yaml파일 포맷의  버전 
+version: "3"
+
+# 생성될 컨테이너의 단위
+services:
+  # DB 구축을 위한  MariaDB
+  mariadb:
+
+    # 서비스 컨테이너를 생성할대 쓰일 이미지의 이름
+    image: mariadb:10.5
+    
+    #컨테이너 종료시 플랫폼이 적용하는 정책을 의미
+    # always의 경우 컨테이너가 제거될때까지 항상 재시작
+    restart: always
+
+    # 서비스의 volume을 지정
+    volumes:
+      - dbvolume:/var/lib/mysql
+
+    # docker run --env, -e  명령어와 같은 의미
+    environment:
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=compose_pro
+      - MARIADB_USER=root
+      - MARIADB_PASSWORD=root
+
+    # 서비스가 네트워크 통신을 사용할 수 있게 해주는 계층
+    networks:
+      - default
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes: 
+      - /home/ubuntu/Nginx/nginx.conf:/etc/nginx/nginx.conf
+    
+    # 해당 컨테이너의 포트 구성
+    ports: 
+      - "80:80"
+      - "443:443"
+
+  django:
+    restart: always
+
+    # 구성된대로 컨테이너 이미지를 생성하기 위한 빌드 구성
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    # 특정 컨테이너에 대한 의존 관계
+    # mariadb가 먼저 생성되고 이후에 생성된다.
+    depends_on: 
+      - mariadb
+    volumes:
+      - /home/ubuntu/Docker_Django_Example/:/home/django/
+    networks:
+      - default
+
+volumes:
+  dbvolume:
+    external: true
