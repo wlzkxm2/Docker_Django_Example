@@ -5,6 +5,8 @@ RUN mkdir /root/.ssh/
 
 ADD ./id_rsa /root/.ssh/id_rsa
 
+RUN cp nginx.conf ~/Nginx/nginx.conf
+
 RUN chmod 600 /root/.ssh/id_rsa
 
 RUN touch /root/.ssh/known_hosts
