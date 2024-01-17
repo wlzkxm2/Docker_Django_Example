@@ -32,7 +32,7 @@ services:
     image: nginx:latest
     restart: always
     volumes: 
-      - /home/ubuntu/Nginx/nginx.conf:/etc/nginx/nginx.conf
+      - /home/ubuntu/Docker_Django_Example/nginx.conf:/etc/nginx/nginx.conf
       - /home/ubuntu/Docker_Django_Example/ComposeProjects/statics/:/var/www/django/static/
     # 해당 컨테이너의 포트 구성
     ports: 
